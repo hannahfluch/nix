@@ -7,9 +7,8 @@
     ./fuzzel.nix
     ./ssh.nix
     ./git.nix
+    ./agenix.nix
     ./applications
-    # ./applications/networkminer.nix
-    # ./applications/firefox.nix
     ./toolchains
   ];
 
@@ -55,6 +54,7 @@
     "documents/"
     "videos/"
     "dev/"
+    ".secrets/"
 
     # nixos config
     "nixcfg/"
