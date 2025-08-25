@@ -12,6 +12,9 @@
     "flakes"
   ];
 
+  # new generation
+  system.rebuild.enableNg = true;
+
   # disable nix channels
   nix.channel.enable = false;
 
