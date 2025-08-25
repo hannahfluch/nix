@@ -71,6 +71,8 @@ Variants {
                 anchors.verticalCenter: bar.verticalCenter
                 spacing: Style.marginS * scaling
 
+                Networks { anchors.verticalCenter: parent.verticalCenter }
+                
                 NotificationHistory {
                     anchors.verticalCenter: parent.verticalCenter
                 }
