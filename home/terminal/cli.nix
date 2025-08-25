@@ -19,6 +19,7 @@
     man-pages-posix
     traceroute
     bottom
+    zellij
 
     # ctf
     hash_extender
