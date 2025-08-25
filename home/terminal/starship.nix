@@ -1,21 +1,42 @@
-{ ... }: {
+{ ... }:
+{
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
 
     settings = {
-      format = "[╭─](fg:frame)" + "[" + (
-        # Left prompt
-        "[](fg:os_bg)" + "[](fg:os bg:os_bg)" + "[](fg:os_bg bg:bg) "
-        + "$directory" + "( | $git_branch)( $git_status)( $git_state)"
-        + "[](fg:bg)"
-        # Right prompt
-        + "$fill(" + ("[](fg:bg)" + "( $status|)" + "( $cmd_duration |)"
-          + "( $sudo |)" + "( $jobs |)" + "( $package |)" + "( $rust |)"
-          + "( python |)" + "" # this is a \b not a whitespace!
-          + "[](fg:bg)") + ")") + ''
-            ](fg:fg bg:bg)
-          '' + "[╰─](fg:frame)$character";
+      format =
+        "[╭─](fg:frame)"
+        + "["
+        + (
+          # Left prompt
+          "[](fg:os_bg)"
+          + "[](fg:os bg:os_bg)"
+          + "[](fg:os_bg bg:bg) "
+          + "$directory"
+          + "( | $git_branch)( $git_status)( $git_state)"
+          + "[](fg:bg)"
+          # Right prompt
+          + "$fill("
+          + (
+            "[](fg:bg)"
+            + "( $status|)"
+            + "( $cmd_duration |)"
+            + "( $sudo |)"
+            + "( $jobs |)"
+            + "( $package |)"
+            + "( $rust |)"
+            + "( $python |)"
+            + "( \${custom.nix_flake} |)"
+            + "" # this is a \b not a whitespace!
+            + "[](fg:bg)"
+          )
+          + ")"
+        )
+        + ''
+          ](fg:fg bg:bg)
+        ''
+        + "[╰─](fg:frame)$character";
 
       palette = "tide";
       palettes.tide = {
@@ -36,6 +57,7 @@
         package = "#AC7647";
         rust = "#F74C00";
         python = "#00AFAF";
+        nix = "#7EBAE4";
 
         git_branch = "#5FD700";
         git_status = "#D7AF00";
@@ -97,6 +119,19 @@
       rust.format = "[ $version](fg:rust bg:bg)";
 
       python.format = "[ $version](fg:python bg:bg)";
+
+      # nix shell heuristics only apply, when the shell is active.
+      custom.nix_flake = {
+        format = "[](fg:nix bg:bg)";
+
+        detect_files = [
+          "flake.nix"
+          "flake.lock"
+        ];
+
+        description = "Displays a nix icon, when in a nix flake directory";
+      };
+
     };
   };
 }
