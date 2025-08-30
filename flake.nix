@@ -102,9 +102,7 @@
       extra = {
         agenix = agenix.packages.${system}.default;
         extensions = firefox-extensions.packages.${system};
-        shell = shell.packages.${system}.default.override {
-          wallpaper_path = "${assets.outPath}/wallpapers/";
-        };
+        shell = shell.packages.${system}.default;
         ccnace = ccnace.packages.${system}.default;
       };
 
